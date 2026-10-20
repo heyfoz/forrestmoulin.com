@@ -1,0 +1,1 @@
+This is a short demonstration of tab recorder. Record a browser tab while the video plays. Speech becomes a time stamped transcript in the side panel. When the recording finishes, save the video and export the captions as a WebVTT file. Keep the meeting. And keep the words.

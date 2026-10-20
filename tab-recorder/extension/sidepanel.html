@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tab Recorder</title>
+  <script src="theme.js"></script>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Tab Recorder<small>A little more worth keeping.</small></span></div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Dark theme" aria-pressed="false"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z"/></svg><span id="themeLabel">Light</span></button>
+    </header>
+    <div class="intro"><p class="eyebrow">YOUR TAB. YOUR NOTES.</p><h1>Keep the conversation.</h1><p>Capture the moment. Come back to the words.</p></div>
+    <div class="mode-tabs" role="group" aria-label="Capture mode"><button class="mode-tab active" data-mode="record" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 9h18"/></svg>Record tab</button><button class="mode-tab" data-mode="upload" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V3m-4 4 4-4 4 4M4 15v5h16v-5"/></svg>Upload file</button></div>
+    <div class="recording-indicator" id="recordingIndicator" role="status"><span class="rec-dot"></span><span id="recordingText">Recording…</span></div>
+    <section class="capture-panel">
+      <div class="mode-content active" id="recordMode">
+        <div class="capture-heading"><span class="section-title">TAB RECORDING</span><span class="badge" id="badge">Ready</span></div>
+        <div class="timer" id="timer" aria-label="Recording duration">00:00:00</div>
+        <div class="meter" aria-hidden="true"><div class="meter-bar" id="meter"></div></div>
+        <p class="capture-hint">Video, audio & every word.</p>
+        <div class="btns"><button class="btn btn-start" id="btnStart" disabled><span class="button-dot" aria-hidden="true"></span>Start recording</button><button class="btn btn-stop" id="btnStop" disabled><span class="button-stop" aria-hidden="true"></span>Stop & save</button></div>
+        <details class="instructions" id="instructions"><summary>How to record a tab <span aria-hidden="true">↗</span></summary><ol class="instructions-list"><li>Add your Deepgram API key in settings.</li><li>Start recording and choose a browser tab.</li><li>Enable <b>Share tab audio</b>, then select <b>Share</b>.</li></ol></details>
+      </div>
+      <div class="mode-content" id="uploadMode">
+        <button class="upload-area" id="uploadArea" type="button"><svg class="upload-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V3m-4 4 4-4 4 4M4 15v5h16v-5"/></svg><span class="upload-text">Drop a file. Find the words.</span><span class="upload-hint">Choose audio or video · Up to 500 MB<br>MP3, MP4, WAV, WebM, M4A, OGG, FLAC</span></button>
+        <input type="file" id="fileInput" accept="audio/*,video/*,.mp3,.mp4,.wav,.webm,.m4a,.ogg,.flac" hidden>
+        <div class="file-info" id="fileInfo"><span class="file-icon" aria-hidden="true">♫</span><div class="file-details"><div class="file-name" id="fileName"></div><div class="file-size" id="fileSize"></div></div><button class="file-remove" id="fileRemove" aria-label="Remove selected file">×</button></div>
+        <div class="progress-container" id="progressContainer" role="status"><div class="progress-label"><span id="progressLabel">Processing…</span><span id="progressPercent">0%</span></div><div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div></div>
+        <button class="btn btn-upload" id="btnTranscribe" disabled>Transcribe file <span aria-hidden="true">↗</span></button>
+      </div>
+      <p class="info" id="info" role="status">Add an API key in settings to get started.</p>
+    </section>
+    <section class="section transcript-section" aria-labelledby="transcriptTitle">
+      <div class="section-header"><div><h2 id="transcriptTitle">Transcript</h2><p>The words, as they happen.</p></div><div class="transcript-actions"><button class="btn-sm" id="btnClear">Clear</button><button class="btn-sm export" id="btnExport" disabled>Export <span aria-hidden="true">↓</span></button></div></div>
+      <div class="captions-box" id="captionsBox"><div class="placeholder" id="placeholder"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h12M6 10h12M6 15h8M6 20h5"/></svg><strong>A fresh page for your next idea.</strong><span>Your timestamped transcript will appear here.</span></div><div id="captionsList" role="log" aria-label="Transcript captions"></div></div>
+      <div class="caption-footer"><div class="status" id="captionStatus"><span class="status-dot"></span><span id="captionStatusText">Waiting for audio</span></div><span class="cue-count" id="cueCount">0 cues</span></div>
+    </section>
+    <details class="section settings" id="settingsPanel"><summary><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="15" cy="17" r="3"/></svg>Transcription settings</span><span class="settings-chevron" aria-hidden="true">+</span></summary><div class="settings-body"><div class="input-group"><label for="apiKey">Deepgram API key</label><div class="key-field"><input type="password" id="apiKey" placeholder="Paste your API key" autocomplete="off" spellcheck="false"><button class="btn-sm" id="btnSaveKey">Save key</button></div></div><div class="input-group"><label for="langSelect">Spoken language</label><select id="langSelect"><option value="en">English</option><option value="pt">Portuguese</option><option value="es">Spanish</option><option value="fr">French</option><option value="de">German</option><option value="it">Italian</option><option value="ja">Japanese</option><option value="ko">Korean</option><option value="zh">Chinese</option></select></div><div class="api-status" id="apiStatus" role="status">Add your key to enable transcription.</div><p class="settings-note">Audio is sent to Deepgram for transcription.<br><a href="https://console.deepgram.com" target="_blank" rel="noopener noreferrer">Get a Deepgram API key ↗</a></p></div></details>
+    <footer class="app-footer"><span>Made for a second listen.</span><span>WEBM / TXT / VTT</span></footer>
+  </main>
+  <script src="sidepanel.js"></script>
+</body>
+</html>

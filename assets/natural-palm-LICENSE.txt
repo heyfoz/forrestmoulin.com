@@ -1,0 +1,19 @@
+Hand photograph and adaptation — CC BY-SA 4.0
+
+Source: “Right Hand Palm.png” by Eyefive45, 8 December 2022.
+https://commons.wikimedia.org/wiki/File:Right_Hand_Palm.png
+Original: https://upload.wikimedia.org/wikipedia/commons/d/d0/Right_Hand_Palm.png
+License: Creative Commons Attribution-ShareAlike 4.0 International
+https://creativecommons.org/licenses/by-sa/4.0/
+
+Changes by Forrest Moulin's portfolio project, 5 October 2026:
+AI-assisted monochrome conversion, transparent cutout, extended wrist and
+spread-finger pose; WebP encoding; canvas tint and wrist fade; manually placed
+anatomical landmark overlay using the MediaPipe 21-point topology.
+The adaptation is made available under the same CC BY-SA 4.0 license.
+The author does not endorse this portfolio. This license applies to the hand
+photograph/adaptation, not to unrelated portfolio code, identity or project assets.
+
+The source photograph is also retained, format-converted and proportionally
+resized, as docs/reference/palm-original.webp for the inference smoke test.
+The hero's annotated points are illustrative, not live detection output.

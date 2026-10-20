@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Tab Recorder",
+  "version": "2.4",
+  "description": "Record any tab with audio and AI captions",
+  "permissions": [
+    "storage",
+    "sidePanel",
+    "desktopCapture",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://api.deepgram.com/*"
+  ],
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    },
+    "default_title": "Open Tab Recorder"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
